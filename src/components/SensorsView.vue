@@ -1,6 +1,10 @@
 <template>
   <div>
     <h2>Sensors</h2>
+
+    <ul>
+      <li v-for="sensor in sensors" :key="sensor.id">{{ sensor.description }}</li>
+    </ul>
   </div>
 </template>
 
@@ -9,6 +13,9 @@ import * as axios from 'axios';
 
 export default {
   name: 'SensorsView',
+  data: () => ({
+    sensors: null
+  }),
   created: function () {
     this.fetchData();
   },
@@ -20,10 +27,8 @@ export default {
         }
       };
 
-      console.log('headers', config.headers);
-
       axios.get('/api/v1/sensors', config).then(res => {
-        console.log(res);
+        this.sensors = res.data;
       });
     }
   }
