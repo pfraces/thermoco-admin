@@ -1,24 +1,33 @@
-# thermoco-admin
+# ThermoCo sensor admin app
 
-## Project setup
+## Setup
+
+Clone the repository and install its dependencies
+
 ```
+git clone https://github.com/pfraces/thermoco-admin
+cd thermoco-admin
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Download and launch the docker image with the backend mock
+
+```
+docker run -p 8000:8000 -it vintratest/thermo_api:latest
+```
+
+## Usage
+
+Launch the application server with a development build
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Browse to <http://localhost:8080>
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Production
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Note that the development build is not optimized.
+
+To create a production build, run `npm run build`.
