@@ -12,6 +12,20 @@ Vue.use(VueMaterial);
 
 Vue.config.productionTip = false;
 
+const Login = { template: '<div>login</div>' };
+const Sensors = { template: '<div>sensors</div>' };
+
+const routes = [
+  { path: '/login', component: Login },
+  { path: '/sensors', component: Sensors },
+];
+
+const router = new VueRouter({
+  mode: 'history',
+  routes: routes,
+});
+
 new Vue({
+  router: router,
   render: (h) => h(App),
 }).$mount('#app');

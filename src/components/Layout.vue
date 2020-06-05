@@ -19,7 +19,14 @@
           </div>
         </md-toolbar>
 
-        <md-list></md-list>
+        <md-list>
+          <md-list-item @click="menuVisible = false">
+            <router-link to="/login">Login</router-link>
+          </md-list-item>
+          <md-list-item @click="menuVisible = false">
+            <router-link to="/sensors">Sensors</router-link>
+          </md-list-item>
+        </md-list>
       </md-app-drawer>
 
       <md-app-content>
