@@ -1,10 +1,12 @@
 <template>
-  <div></div>
+  <div>
+    <h2>Sensors</h2>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
+  name: 'SensorsView',
   props: {}
 }
 </script>

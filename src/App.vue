@@ -1,14 +1,14 @@
 <template>
-  <Layout />
+  <AppLayout />
 </template>
 
 <script>
-import Layout from './components/Layout.vue'
+import AppLayout from '@/components/AppLayout.vue'
 
 export default {
   name: 'App',
   components: {
-    Layout
+    AppLayout
   }
 }
 </script>

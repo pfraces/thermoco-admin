@@ -30,7 +30,7 @@
       </md-app-drawer>
 
       <md-app-content>
-        <Sensors />
+        <router-view />
       </md-app-content>
     </md-app>
   </div>
@@ -48,13 +48,8 @@
 </style>
 
 <script>
-import Sensors from './Sensors.vue';
-
 export default {
-  name: 'Layout',
-  components: {
-    Sensors
-  },
+  name: 'AppLayout',
   data: function() {
     return {
       menuVisible: false
