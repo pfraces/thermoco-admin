@@ -50,10 +50,8 @@
 <script>
 export default {
   name: 'AppLayout',
-  data: function() {
-    return {
-      menuVisible: false
-    };
-  }
+  data: () => ({
+    menuVisible: false
+  })
 };
 </script>
