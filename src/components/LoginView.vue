@@ -49,8 +49,8 @@ export default {
       axios.post('/auth/login', payload)
         .then(res => {
           this.clearForm();
-          this.$store.commit('setAccessToken', res.access_token)
-          this.$router.push({ path: 'sessions' });
+          this.$store.commit('setAccessToken', res.data.access_token);
+          this.$router.push({ path: 'sensors' });
         });
     }
   }
