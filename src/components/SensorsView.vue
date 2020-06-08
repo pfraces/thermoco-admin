@@ -104,7 +104,7 @@ export default {
       };
 
       axios.get('/api/v1/sensors', config).then(res => {
-        this.sensors = [ ...res.data, ...res.data, ...res.data, ...res.data, ...res.data ];
+        this.sensors = res.data;
       });
     },
     edit: function (id) {
