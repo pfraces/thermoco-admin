@@ -6,7 +6,7 @@
         Sensor
         <span v-if="id" class="sensor-id">#{{ id }}</span>
       </h2>
-      <md-button v-if="id" class="md-raised md-accent">Delete</md-button>
+      <md-button v-if="id" @click="deleteSensor(id)" class="md-raised md-accent">Delete</md-button>
     </div>
 
     <form novalidate @submit.prevent="submit">
@@ -94,26 +94,31 @@ export default {
     },
     submit: function () {
       if (this.id) {
-        this.update(this.id);
+        this.updateSensor(this.id);
       } else {
-        this.create();
+        this.createSensor();
       }
     },
-    create: function () {
+    createSensor: function () {
       const conf = { headers: this.authHeaders() };
       const data = { ...this.sensor };
 
-      axios.post(`/api/v1/sensors`, data, conf).then(res => {
-        this.sensor = res.data;
+      axios.post(`/api/v1/sensors`, data, conf).then(() => {
         this.$router.push({ path: '/sensors' });
       });
     },
-    update: function (id) {
+    updateSensor: function (id) {
       const conf = { headers: this.authHeaders() };
       const data = { ...this.sensor };
 
-      axios.put(`/api/v1/sensors/${id}`, data, conf).then(res => {
-        this.sensor = res.data;
+      axios.put(`/api/v1/sensors/${id}`, data, conf).then(() => {
+        this.$router.push({ path: '/sensors' });
+      });
+    },
+    deleteSensor: function (id) {
+      const conf = { headers: this.authHeaders() };
+
+      axios.delete(`/api/v1/sensors/${id}`, conf).then(() => {
         this.$router.push({ path: '/sensors' });
       });
     }

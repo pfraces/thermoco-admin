@@ -2,14 +2,14 @@
   <div>
     <div class="title">
       <h2>Sensors</h2>
-      <md-button @click="create" class="md-raised md-primary">Create</md-button>
+      <md-button @click="createSensor" class="md-raised md-primary">Create</md-button>
     </div>
 
     <ul>
       <li v-for="sensor in sensors" :key="sensor.id">
         <md-card md-with-hover>
           <md-ripple>
-            <div @click="edit(sensor.id)">
+            <div @click="editSensor(sensor.id)">
               <md-card-content>
                 <div class="md-layout">
                   <div class="md-layout-item md-size-10 is-active">
@@ -115,10 +115,10 @@ export default {
         this.sensors = res.data;
       });
     },
-    create: function () {
+    createSensor: function () {
       this.$router.push({ path: '/sensors/new' });
     },
-    edit: function (id) {
+    editSensor: function (id) {
       this.$router.push({ path: `/sensors/${id}` });
     }
   }
