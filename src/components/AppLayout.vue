@@ -30,16 +30,17 @@
       </md-app-drawer>
 
       <md-app-content>
-        <router-view />
+        <div class="container">
+          <router-view />
+        </div>
       </md-app-content>
     </md-app>
   </div>
 </template>
 
-<style scoped>
+<style>
 .md-app {
   height: 100vh;
-  border: 1px solid rgba(#000, 0.12);
 }
 
 .md-drawer {

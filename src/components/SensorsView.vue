@@ -13,7 +13,7 @@
                   <i v-if="!sensor.isActive" class="material-icons sensor-inactive">cancel</i>
                 </div>
                 <div class="md-layout-item description">{{ sensor.description }}</div>
-                <div class="md-layout-item md-size-15 sampling-period">
+                <div class="md-layout-item md-size-10 sampling-period">
                   <i class="material-icons">history</i>
                   {{ sensor.samplingPeriod }}&apos;
                 </div>
@@ -104,7 +104,7 @@ export default {
       };
 
       axios.get('/api/v1/sensors', config).then(res => {
-        this.sensors = res.data;
+        this.sensors = [ ...res.data, ...res.data, ...res.data, ...res.data, ...res.data ];
       });
     },
     edit: function (id) {
