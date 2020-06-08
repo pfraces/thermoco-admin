@@ -8,10 +8,15 @@ const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: LoginView },
   { path: '/sensors', component: SensorsView },
-  { path: '/sensors/:id', component: SensorDetailView },
+  { path: '/sensors/new', component: SensorDetailView },
+  {
+    path: '/sensors/:id',
+    component: SensorDetailView,
+    props: (route) => ({ id: parseInt(route.params.id, 10) })
+  }
 ];
 
 export default new VueRouter({
   mode: 'history',
-  routes: routes,
+  routes: routes
 });

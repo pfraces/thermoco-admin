@@ -2,13 +2,14 @@
   <div>
     <div class="title">
       <h2>
+        <span v-if="!id">New</span>
         Sensor
-        <span class="sensor-id">#{{ $route.params.id }}</span>
+        <span v-if="id" class="sensor-id">#{{ id }}</span>
       </h2>
-      <md-button class="md-raised md-accent">Delete</md-button>
+      <md-button v-if="id" class="md-raised md-accent">Delete</md-button>
     </div>
 
-    <form novalidate @submit.prevent="update">
+    <form novalidate @submit.prevent="submit">
       <md-card>
         <md-card-content>
           <md-switch
@@ -38,7 +39,7 @@
         </md-card-content>
 
         <md-card-actions>
-          <md-button type="submit" class="md-raised md-primary">Update</md-button>
+          <md-button type="submit" class="md-raised md-primary">{{ id ? 'Update' : 'Create' }}</md-button>
         </md-card-actions>
       </md-card>
     </form>
@@ -60,18 +61,23 @@ import * as axios from 'axios';
 
 export default {
   name: 'SensorDetailView',
+  props: {
+    id: Number
+  },
   data: function () {
     return {
       sensor: {
-        id: this.$route.params.id,
-        description: null,
-        samplingPeriod: null,
-        isActive: null
+        id: this.id || null,
+        isActive: false,
+        description: "",
+        samplingPeriod: 5
       }
     };
   },
   created: function () {
-    this.fetchData();
+    if (this.id) {
+      this.fetchData();
+    }
   },
   methods: {
     authHeaders: function () {
@@ -82,15 +88,31 @@ export default {
     fetchData: function () {
       const conf = { headers: this.authHeaders() };
 
-      axios.get(`/api/v1/sensors/${this.sensor.id}`, conf).then(res => {
+      axios.get(`/api/v1/sensors/${this.id}`, conf).then(res => {
         this.sensor = res.data;
       });
     },
-    update: function () {
+    submit: function () {
+      if (this.id) {
+        this.update(this.id);
+      } else {
+        this.create();
+      }
+    },
+    create: function () {
       const conf = { headers: this.authHeaders() };
       const data = { ...this.sensor };
 
-      axios.put(`/api/v1/sensors/${this.sensor.id}`, data, conf).then(res => {
+      axios.post(`/api/v1/sensors`, data, conf).then(res => {
+        this.sensor = res.data;
+        this.$router.push({ path: '/sensors' });
+      });
+    },
+    update: function (id) {
+      const conf = { headers: this.authHeaders() };
+      const data = { ...this.sensor };
+
+      axios.put(`/api/v1/sensors/${id}`, data, conf).then(res => {
         this.sensor = res.data;
         this.$router.push({ path: '/sensors' });
       });
