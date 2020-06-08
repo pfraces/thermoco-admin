@@ -91,26 +91,29 @@ import * as axios from 'axios';
 
 export default {
   name: 'SensorsView',
-  data: () => ({
-    sensors: null
-  }),
+  data: function () {
+    return {
+      sensors: null
+    };
+  },
   created: function () {
     this.fetchData();
   },
   methods: {
-    fetchData: function () {
-      const config = {
-        headers: {
-          'Authorization': `Bearer ${this.$store.state.accessToken}`
-        }
+    authHeaders: function () {
+      return {
+        'Authorization': `Bearer ${this.$store.state.accessToken}`
       };
+    },
+    fetchData: function () {
+      const conf = { headers: this.authHeaders() };
 
-      axios.get('/api/v1/sensors', config).then(res => {
+      axios.get('/api/v1/sensors', conf).then(res => {
         this.sensors = res.data;
       });
     },
     edit: function (id) {
-      this.$router.push({ path: `sensors/${id}` });
+      this.$router.push({ path: `/sensors/${id}` });
     }
   }
 }

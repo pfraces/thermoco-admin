@@ -51,8 +51,10 @@
 <script>
 export default {
   name: 'AppLayout',
-  data: () => ({
-    menuVisible: false
-  })
+  data: function () {
+    return {
+      menuVisible: false
+    };
+  }
 };
 </script>

@@ -7,11 +7,11 @@
         <md-card-content>
           <md-field>
             <label for="username">Name</label>
-            <md-input name="username" id="username" v-model="form.username" />
+            <md-input name="username" id="username" v-model="auth.username" />
           </md-field>
           <md-field>
             <label for="password">Password</label>
-            <md-input name="password" id="password" type="password" v-model="form.password" />
+            <md-input name="password" id="password" type="password" v-model="auth.password" />
           </md-field>
         </md-card-content>
 
@@ -36,29 +36,27 @@ import * as qs from 'qs';
 
 export default {
   name: 'LoginView',
-  data: () => ({
-    form: {
-      username: null,
-      password: null
-    }
-  }),
+  data: function () {
+    return {
+      auth: {
+        username: null,
+        password: null
+      }
+    };
+  },
   methods: {
     clearForm: function () {
-      this.form.username = null;
-      this.form.password = null;
+      this.auth.username = null;
+      this.auth.password = null;
     },
     login: function () {
-      const payload = qs.stringify({
-        username: this.form.username,
-        password: this.form.password
-      });
+      const data = qs.stringify({ ...this.auth });
 
-      axios.post('/auth/login', payload)
-        .then(res => {
-          this.clearForm();
-          this.$store.commit('setAccessToken', res.data.access_token);
-          this.$router.push({ path: 'sensors' });
-        });
+      axios.post('/auth/login', data).then(res => {
+        this.clearForm();
+        this.$store.commit('setAccessToken', res.data.access_token);
+        this.$router.push({ path: '/sensors' });
+      });
     }
   }
 }

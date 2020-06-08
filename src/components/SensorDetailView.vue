@@ -29,8 +29,8 @@
                   name="sampling-period"
                   id="sampling-period"
                   type="number"
-                  min="0"
-                  v-model="sensor.samplingPeriod"
+                  min="5"
+                  v-model.number="sensor.samplingPeriod"
                 />
               </md-field>
             </div>
@@ -69,26 +69,39 @@ import * as axios from 'axios';
 
 export default {
   name: 'SensorDetailView',
-  data: () => ({
-    sensor: {
-      description: null,
-      samplingPeriod: null,
-      isActive: null
-    }
-  }),
+  data: function () {
+    return {
+      sensor: {
+        id: this.$route.params.id,
+        description: null,
+        samplingPeriod: null,
+        isActive: null
+      }
+    };
+  },
   created: function () {
     this.fetchData();
   },
   methods: {
-    fetchData: function () {
-      const config = {
-        headers: {
-          'Authorization': `Bearer ${this.$store.state.accessToken}`
-        }
+    authHeaders: function () {
+      return {
+        'Authorization': `Bearer ${this.$store.state.accessToken}`
       };
+    },
+    fetchData: function () {
+      const conf = { headers: this.authHeaders() };
 
-      axios.get(`/api/v1/sensors/${this.$route.params.id}`, config).then(res => {
+      axios.get(`/api/v1/sensors/${this.sensor.id}`, conf).then(res => {
         this.sensor = res.data;
+      });
+    },
+    update: function () {
+      const conf = { headers: this.authHeaders() };
+      const data = { ...this.sensor };
+
+      axios.put(`/api/v1/sensors/${this.sensor.id}`, data, conf).then(res => {
+        this.sensor = res.data;
+        this.$router.push({ path: '/sensors' });
       });
     }
   }
