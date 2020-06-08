@@ -46,15 +46,6 @@
 </template>
 
 <style scoped>
-.title {
-  display: flex;
-  align-items: center;
-}
-
-.title h2 {
-  flex: 1;
-}
-
 .sensor-id {
   color: #999;
 }

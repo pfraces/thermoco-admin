@@ -3,7 +3,13 @@
   margin: 0 auto;
 }
 
-.container h2 {
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title h2 {
+  flex: 1;
   font-family: 'Segoe UI', sans-serif;
   line-height: initial;
   font-size: 2rem;

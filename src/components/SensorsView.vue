@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h2>Sensors</h2>
+    <div class="title">
+      <h2>Sensors</h2>
+      <md-button class="md-raised md-primary">Create</md-button>
+    </div>
 
     <ul>
       <li v-for="sensor in sensors" :key="sensor.id">

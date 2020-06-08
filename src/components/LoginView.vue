@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <div class="title">
+      <h2>Login</h2>
+    </div>
 
     <form novalidate @submit.prevent="login">
       <md-card>
