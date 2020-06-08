@@ -4,12 +4,12 @@
   </div>
 </template>
 
+<style scoped>
+</style>
+
 <script>
 export default {
   name: 'SensorDetailView',
   props: {}
 }
 </script>
-
-<style scoped>
-</style>
