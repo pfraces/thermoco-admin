@@ -7,15 +7,17 @@
         <md-card md-with-hover>
           <md-ripple>
             <div @click="edit(sensor.id)">
-              <md-card-content class="md-layout">
-                <div class="md-layout-item md-size-10 is-active">
-                  <i v-if="sensor.isActive" class="material-icons sensor-active">check_circle</i>
-                  <i v-if="!sensor.isActive" class="material-icons sensor-inactive">cancel</i>
-                </div>
-                <div class="md-layout-item description">{{ sensor.description }}</div>
-                <div class="md-layout-item md-size-10 sampling-period">
-                  <i class="material-icons">history</i>
-                  {{ sensor.samplingPeriod }}&apos;
+              <md-card-content>
+                <div class="md-layout">
+                  <div class="md-layout-item md-size-10 is-active">
+                    <i v-if="sensor.isActive" class="material-icons sensor-active">check_circle</i>
+                    <i v-if="!sensor.isActive" class="material-icons sensor-inactive">cancel</i>
+                  </div>
+                  <div class="md-layout-item description">{{ sensor.description }}</div>
+                  <div class="md-layout-item md-size-10 sampling-period">
+                    <i class="material-icons">history</i>
+                    {{ sensor.samplingPeriod }}&apos;
+                  </div>
                 </div>
               </md-card-content>
             </div>

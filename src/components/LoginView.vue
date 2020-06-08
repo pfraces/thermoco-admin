@@ -7,7 +7,7 @@
         <md-card-content>
           <md-field>
             <label for="username">Name</label>
-            <md-input name="username" id="name" v-model="form.username" />
+            <md-input name="username" id="username" v-model="form.username" />
           </md-field>
           <md-field>
             <label for="password">Password</label>
@@ -16,7 +16,7 @@
         </md-card-content>
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary">Login</md-button>
+          <md-button type="submit" class="md-raised md-primary">Login</md-button>
         </md-card-actions>
       </md-card>
     </form>
