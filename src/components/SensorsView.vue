@@ -2,7 +2,7 @@
   <div>
     <div class="title">
       <h2>Sensors</h2>
-      <md-button class="md-raised md-primary">Create</md-button>
+      <md-button @click="create" class="md-raised md-primary">Create</md-button>
     </div>
 
     <ul>
@@ -114,6 +114,9 @@ export default {
       axios.get('/api/v1/sensors', conf).then(res => {
         this.sensors = res.data;
       });
+    },
+    create: function () {
+      this.$router.push({ path: '/sensors/new' });
     },
     edit: function (id) {
       this.$router.push({ path: `/sensors/${id}` });

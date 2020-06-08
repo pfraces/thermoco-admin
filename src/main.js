@@ -20,17 +20,17 @@ Vue.config.productionTip = false;
 
 const store = new Vuex.Store({
   state: {
-    accessToken: null,
+    accessToken: null
   },
   mutations: {
     setAccessToken(state, accessToken) {
       state.accessToken = accessToken;
-    },
-  },
+    }
+  }
 });
 
 new Vue({
   router: router,
   store: store,
-  render: (h) => h(App),
+  render: (h) => h(App)
 }).$mount('#app');
