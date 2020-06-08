@@ -23,6 +23,13 @@
   </div>
 </template>
 
+<style scoped>
+.md-card {
+  width: 320px;
+  margin: 2px;
+}
+</style>
+
 <script>
 import * as axios from 'axios';
 import * as qs from 'qs';
@@ -56,10 +63,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.md-card {
-  width: 320px;
-  margin: 4px;
-}
-</style>
