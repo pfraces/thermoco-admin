@@ -1,0 +1,11 @@
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.container h2 {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: initial;
+  font-size: 2rem;
+  font-weight: 300;
+}

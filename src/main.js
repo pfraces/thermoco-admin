@@ -10,6 +10,8 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import router from './router';
 import App from './App.vue';
 
+import '@/styles/theme.css';
+
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VueMaterial);
