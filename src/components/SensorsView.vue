@@ -1,21 +1,26 @@
 <template>
   <div>
-    <h2>Sensors</h2>
+    <div class="title">
+      <h2>Sensors</h2>
+      <md-button class="md-raised md-primary">Create</md-button>
+    </div>
 
     <ul>
       <li v-for="sensor in sensors" :key="sensor.id">
         <md-card md-with-hover>
           <md-ripple>
             <div @click="edit(sensor.id)">
-              <md-card-content class="md-layout">
-                <div class="md-layout-item md-size-10 is-active">
-                  <i v-if="sensor.isActive" class="material-icons sensor-active">check_circle</i>
-                  <i v-if="!sensor.isActive" class="material-icons sensor-inactive">cancel</i>
-                </div>
-                <div class="md-layout-item description">{{ sensor.description }}</div>
-                <div class="md-layout-item md-size-10 sampling-period">
-                  <i class="material-icons">history</i>
-                  {{ sensor.samplingPeriod }}&apos;
+              <md-card-content>
+                <div class="md-layout">
+                  <div class="md-layout-item md-size-10 is-active">
+                    <i v-if="sensor.isActive" class="material-icons sensor-active">check_circle</i>
+                    <i v-if="!sensor.isActive" class="material-icons sensor-inactive">cancel</i>
+                  </div>
+                  <div class="md-layout-item description">{{ sensor.description }}</div>
+                  <div class="md-layout-item md-size-10 sampling-period">
+                    <i class="material-icons">history</i>
+                    {{ sensor.samplingPeriod }}&apos;
+                  </div>
                 </div>
               </md-card-content>
             </div>
@@ -89,26 +94,29 @@ import * as axios from 'axios';
 
 export default {
   name: 'SensorsView',
-  data: () => ({
-    sensors: null
-  }),
+  data: function () {
+    return {
+      sensors: null
+    };
+  },
   created: function () {
     this.fetchData();
   },
   methods: {
-    fetchData: function () {
-      const config = {
-        headers: {
-          'Authorization': `Bearer ${this.$store.state.accessToken}`
-        }
+    authHeaders: function () {
+      return {
+        'Authorization': `Bearer ${this.$store.state.accessToken}`
       };
+    },
+    fetchData: function () {
+      const conf = { headers: this.authHeaders() };
 
-      axios.get('/api/v1/sensors', config).then(res => {
+      axios.get('/api/v1/sensors', conf).then(res => {
         this.sensors = res.data;
       });
     },
     edit: function (id) {
-      this.$router.push({ path: `sensors/${id}` });
+      this.$router.push({ path: `/sensors/${id}` });
     }
   }
 }
