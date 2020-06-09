@@ -1,8 +1,11 @@
+import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import LoginView from '@/components/LoginView.vue';
 import SensorsView from '@/components/SensorsView.vue';
 import SensorDetailView from '@/components/SensorDetailView.vue';
+
+Vue.use(VueRouter);
 
 const routes = [
   { path: '/', redirect: '/login' },
